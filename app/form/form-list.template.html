@@ -1,0 +1,97 @@
+<div>
+  <form name="form" novalidate class="css-form">
+    <label>Name:<input type="text" ng-model="user.name" ng-model-options="{ updateOn: 'default blur', debounce: {default: 500,blur:0}}" name="uName" required=""></label>
+    <br />
+
+    <div ng-show="form.$submitted || form.uName.$touched">
+      <div ng-show="form.uName.$error.required">Tell us your name.</div>
+    </div>
+
+    <label>E-mail: <input type="email" ng-model="user.email" ng-model-options="{ updatedOn: 'mousedown blur'}" name='uEmail' required=""></label>
+    <br />
+
+    <div ng-show="form.$submitted || form.uEmail.$touched">
+      <span ng-show="form.uEmail.$error.required">Tell us you email.</span>
+      <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
+    </div>
+
+    <div>
+      Best Editor:
+      <label><input type="radio" ng-model='user.preference' value='vi'/>vi</label>
+      <label><input type="radio" ng-model="user.preference" value="emacs"/>emacs</label><br />
+    </div>
+
+    <div>
+      Gender:
+      <label><input type="radio" ng-model="user.gender" value="male" />male</label>
+      <label><input type="radio" ng-model="user.gender" value="female" />female</label><br />
+    </div>
+    <br>
+
+    <label>
+      <input type="checkbox" ng-model="user.agree" name="userAgree" />
+      I agree:
+    </label>
+
+    <input ng-show="user.agree" type="text" ng-model="user.agreeSign" required="" />
+
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="update(user)" value="Save" />
+  </form>
+
+  <pre>user = {{user | json}}</pre>
+  <pre>master = {{master | json}}</pre>
+</div>
+
+
+<div>
+  <form novalidate>
+    <label>Name:
+      <input type="text" ng-model="user.name" ng-model-options="{ updateOn: 'blur' }" /></label><br />
+    <label>
+    Other data:
+    <input type="text" ng-model="user.data" /></label><br />
+  </form>
+  <pre>username = "{{user.name}}"</pre>
+  <pre>userdata = "{{user.data}}"</pre>
+</div>
+
+
+
+<form novalidate name="form" class="css-form" novalidate>
+  <div>
+    <label>
+    Size (integer 0 - 10):
+    <input type="number" ng-model="size" name="size"
+           min="0" max="10" integer />{{size}}</label><br />
+    <span ng-show="form.size.$error.integer">The value is not a valid integer!</span>
+    <span ng-show="form.size.$error.min || form.size.$error.max">The value must be in range 0 to 10!</span>
+  </div>
+
+  <div>
+    <label>
+    Username:
+    <input type="text" ng-model="name" name="name" username />{{name}}</label><br />
+    <span ng-show="form.name.$pending.username">Checking if this name is available...</span>
+    <span ng-show="form.name.$error.username">This username is already taken!</span>
+  </div>
+
+</form>
+
+
+<form name="form" class="css-form" novalidate>
+  <div>
+    <label>
+      Overwritten Email:
+      <input type="email" ng-model="myEmail" overwrite-email name="overwrittenEmail" />
+    </label>
+
+    <span ng-show="form.overwrittenEmail.$error.email">This email format is invalid!</span>
+    <br>
+    Model: {{myEmail}}
+  </div>
+</form>
+
+<div contentEditable="true" ng-model="content" title="click to edit">Some</div>
+
+<pre></pre>
